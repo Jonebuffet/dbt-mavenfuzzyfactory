@@ -1,0 +1,29 @@
+
+version: 2
+
+sources:
+  - name: mavenfuzzyfactory
+    database: FuzzyFactory
+    description: A replica of the postgres database used to power the mavenfuzzyfactory app.
+    tables:
+      - name: website_sessions 
+        columns:
+          - name: website_session_id 
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+
+          - name: user_id
+            description: Foreign key to orders 
+
+      - name: orders
+        columns:
+          - name: order_id 
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+
+          - name: user_id
+            description: Foreign key to website_sessions
