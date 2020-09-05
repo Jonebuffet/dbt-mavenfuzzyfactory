@@ -1,5 +1,5 @@
 -- psql -h localhost -d FuzzyFactory -U postgres -p 5432 -a -q -f createmavenfuzzyfactory-postgres.sql 
-
+-- psql -h chartio-dbt-09032020.cevjpmn7ct9r.us-east-2.rds.amazonaws.com -d FuzzyFactory -U postgres -p 5432 -a -q -f createmavenfuzzyfactory-postgres.sql
 
 
 --======================================================================
