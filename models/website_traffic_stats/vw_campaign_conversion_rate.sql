@@ -8,7 +8,7 @@
 
   CVR= ~3% (0.029)
 */
---{{ config(materialized='table') }}
+{{ config(materialized='table') }}
 with sessions as (
   select * from {{ source('mavenfuzzyfactory', 'website_sessions') }}
 ),
