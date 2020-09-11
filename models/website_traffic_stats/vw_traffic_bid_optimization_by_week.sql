@@ -4,8 +4,9 @@
 	Let's now pull the weekly volumes by 'device_type'
 */
 {{ config(materialized='view') }}
+-- {{ source('mavenfuzzyfactory', 'website_sessions') }}
 with sessions as (
-  select * from {{ source('mavenfuzzyfactory', 'website_sessions') }}
+  select * from {{ ref('stg_sessions') }}
 ),
 final as (
 SELECT MIN(DATE(created_at)) AS "Week",

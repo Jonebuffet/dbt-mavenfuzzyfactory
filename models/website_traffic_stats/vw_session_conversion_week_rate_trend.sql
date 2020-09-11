@@ -6,8 +6,9 @@
   if this bids have affected volumes.
 */
 {{ config(materialized='view') }}
+-- {{ source('mavenfuzzyfactory', 'website_sessions') }}
 with sessions as (
-  select * from {{ source('mavenfuzzyfactory', 'website_sessions') }}
+  select * from {{ ref('stg_sessions') }}
 ),
 final as (
 SELECT EXTRACT(YEAR from created_at) AS "Year",

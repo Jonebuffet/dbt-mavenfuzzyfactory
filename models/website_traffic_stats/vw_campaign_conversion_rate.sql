@@ -10,12 +10,14 @@
 */
 {{ config(materialized='view') }}
 with sessions as (
-  select * from {{ source('mavenfuzzyfactory', 'website_sessions') }}
+--  {{ source('mavenfuzzyfactory', 'website_sessions') }}
+  select * from {{ ref('stg_sessions') }}
 ),
 orders as (
+-- {{ source('mavenfuzzyfactory', 'orders') }}
   select
     *
-  from {{ source('mavenfuzzyfactory', 'orders') }}
+  from {{ ref('stg_orders') }}
 ),
 final as (
 SELECT

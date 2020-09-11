@@ -12,13 +12,16 @@
 	Sure enough, conversion rates from mobile devices are quite low.
 */
 {{ config(materialized='view') }}
+-- {{ source('mavenfuzzyfactory', 'website_sessions') }}
+
 with sessions as (
-  select * from {{ source('mavenfuzzyfactory', 'website_sessions') }}
+  select * from {{ ref('stg_sessions') }}
 ),
+-- {{ source('mavenfuzzyfactory', 'orders') }}
 orders as (
   select
     *
-  from {{ source('mavenfuzzyfactory', 'orders') }}
+  from  {{ ref('stg_orders') }}
 ),
 final as (
 SELECT utm_source as Source,
