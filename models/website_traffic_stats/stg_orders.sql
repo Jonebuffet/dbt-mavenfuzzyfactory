@@ -1,4 +1,3 @@
-
 {{ config(materialized='incremental') }}
 with orders as (
 select *

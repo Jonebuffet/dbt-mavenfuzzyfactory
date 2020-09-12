@@ -27,6 +27,10 @@ sources:
 
           - name: user_id
             description: Foreign key to website_sessions
+            tests:
+              - relationships:
+                  to: ref('orders')
+                  field: user_id            
 
       - name: website_pageviews
         columns:
@@ -37,4 +41,8 @@ sources:
               - not_null
 
           - name: website_session_id
-            description: Foreign key to website_sessions
+            description: Foreign key to website_session
+            tests:
+              - relationships:
+                  to: ref('website_sessions')
+                  field: website_session_id
