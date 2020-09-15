@@ -26,13 +26,13 @@ orders as (
 final as (
 SELECT utm_source as Source,
        utm_campaign as Campaign,
- 	   device_type,
-       COUNT(DISTINCT website_sessions.website_session_id) AS "Sessions",
-	   COUNT(DISTINCT order_id) AS "Orders",
-	   ROUND(CAST(COUNT(DISTINCT order_id) AS decimal)/CAST(COUNT(DISTINCT website_sessions.website_session_id) AS decimal), 4)  AS "Session->Order Conversion"
-FROM mavenfuzzyfactory.website_sessions
-	LEFT JOIN mavenfuzzyfactory.orders
-	ON orders.website_session_id = website_sessions.website_session_id
+ 	     device_type,
+       COUNT(DISTINCT sessions.website_session_id) AS "Sessions",
+	     COUNT(DISTINCT order_id) AS "Orders",
+	     ROUND(CAST(COUNT(DISTINCT order_id) AS decimal)/CAST(COUNT(DISTINCT sessions.website_session_id) AS decimal), 4)  AS "Session->Order Conversion"
+FROM sessions
+	LEFT JOIN orders
+	ON orders.website_session_id = sessions.website_session_id
 /*
 WHERE website_sessions.utm_source = 'gsearch'
       AND utm_campaign = 'nonbrand'

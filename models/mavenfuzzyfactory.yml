@@ -3,6 +3,7 @@ version: 2
 
 sources:
   - name: mavenfuzzyfactory
+    loader: stitch
     database: FuzzyFactory
     description: A replica of the postgres database used to power the mavenfuzzyfactory app.
     tables:
@@ -30,7 +31,7 @@ sources:
             tests:
               - relationships:
                   to: ref('orders')
-                  field: user_id            
+                  field: user_id
 
       - name: website_pageviews
         columns:
