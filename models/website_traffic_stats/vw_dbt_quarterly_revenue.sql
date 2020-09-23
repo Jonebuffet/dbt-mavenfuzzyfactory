@@ -24,6 +24,6 @@ final as (
   	LEFT JOIN orders
   		ON sessions.website_session_id = orders.website_session_id
   GROUP BY 1
-  ORDER BY qtr
+  ORDER BY qtr, keyboard is now working.
 )
 select * from final
