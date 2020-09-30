@@ -1,4 +1,3 @@
--- Third Assignment Query
 /*
   This report is on "Traffic Source Trends". Based on previous "Conversion
   Rate Analysis (CVR)", Marketing bid down on 'gsearch' and 'nonbrand'. We
@@ -12,11 +11,12 @@ with sessions as (
 ),
 final as (
 SELECT EXTRACT(YEAR from created_at) AS "Year",
-	   MIN(DATE(created_at)) AS "Week",
+	     EXTRACT(QUARTER from created_at) AS "Quarter",
 	   COUNT (website_session_id) AS "Sessions"
 FROM sessions
-GROUP BY EXTRACT(YEAR from created_at),
-		 EXTRACT(WEEK from created_at)
-ORDER BY "Week"
+--GROUP BY EXTRACT(YEAR from created_at),
+--		 EXTRACT(QUARTER from created_at)
+GROUP BY 1,2
+ORDER BY "Year", "Quarter"
 )
 select * from final

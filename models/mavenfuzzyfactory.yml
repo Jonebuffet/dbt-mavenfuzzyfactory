@@ -3,23 +3,24 @@ version: 2
 
 sources:
   - name: mavenfuzzyfactory
+    loader: stitch
     database: FuzzyFactory
     description: A replica of the postgres database used to power the mavenfuzzyfactory app.
     tables:
-      - name: website_sessions 
+      - name: website_sessions
         columns:
-          - name: website_session_id 
+          - name: website_session_id
             description: Primary key of the table
             tests:
               - unique
               - not_null
 
           - name: user_id
-            description: Foreign key to orders 
+            description: Foreign key to orders
 
       - name: orders
         columns:
-          - name: order_id 
+          - name: order_id
             description: Primary key of the table
             tests:
               - unique
@@ -27,3 +28,22 @@ sources:
 
           - name: user_id
             description: Foreign key to website_sessions
+            tests:
+              - relationships:
+                  to: ref('orders')
+                  field: user_id
+
+      - name: website_pageviews
+        columns:
+          - name: website_pageview_id
+            description: Primary key of website_pageviews
+            tests:
+              - unique
+              - not_null
+
+          - name: website_session_id
+            description: Foreign key to website_session
+            tests:
+              - relationships:
+                  to: ref('website_sessions')
+                  field: website_session_id

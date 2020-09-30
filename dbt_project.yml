@@ -33,4 +33,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   mavenfuzzyfactory:
+     schema: metrics
      materialized: view
